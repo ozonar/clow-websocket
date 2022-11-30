@@ -1,5 +1,35 @@
+class EasyWebSocket {
 
+    constructor(serverIp, onMessageCallback) {
+        this.browserId = Identity.getBrowserId();
+        this.createWebSocket(serverIp, onMessageCallback);
+        this.queue = new SendQueue(this.conn, this.browserId)
+    }
 
+    createWebSocket(currLocation, onMessageCallback) {
+
+        this.conn = new ReconnectingWebSocket('ws://' + currLocation);
+
+        this.conn.onopen = function () {
+            console.info("Connection established!");
+
+            WsHelper.dispatchEvent('websocket:ready');
+        };
+
+        this.conn.onerror = function () {
+            console.info("Connection error!");
+        };
+
+        this.conn.onclose = function () {
+            console.info("Connection close!");
+        };
+
+        this.conn.onmessage = function (e) {
+            onMessageCallback(e);
+            // EasyWebSocket.receiveMessage(e);
+        };
+    }
+}
 
 class SendQueue {
     constructor(connection, browserId) {
@@ -59,5 +89,20 @@ class WsHelper {
     static dispatchEvent(name) {
         const event = new Event(name);
         document.dispatchEvent(event);
+    }
+}
+
+
+
+class A {
+    constructor(onMessageCallback) {
+        this.onMessageCallback = onMessageCallback;
+    }
+
+    init () {
+        this.conn = new WebSocket('localhost');
+        this.conn.onmessage = function () {
+            this.onMessageCallback() // this в данном контексте не класс А
+        };
     }
 }

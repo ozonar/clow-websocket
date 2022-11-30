@@ -87,91 +87,32 @@
 </div>
 <script>
 
+    class ClowNetwork {
+        ews;
 
-    class EasyWebSocket {
+        constructor() {
 
-        static init(serverIp) {
-            EasyWebSocket.browserId = Identity.getBrowserId();
-            EasyWebSocket.fetchWebSocket(serverIp);
-            EasyWebSocket.queue = new SendQueue(EasyWebSocket.conn, EasyWebSocket.browserId)
+            let ews;
+            easyFetch('getServerIp.php', {}).then(function (serverIp) {
+                ews = new EasyWebSocket(serverIp, ClowNetwork.receiveMessage);
+            });
+
+            this.ews = ews;
+
+            document.addEventListener('websocket:ready', this.init);
         }
 
-        static fetchWebSocket(serverIp) {
-            EasyWebSocket.createWebSocket(serverIp);
+        init() {
+            this.ews.queue.sendNow('type1', {'msg': 'message1'});
         }
 
-        static createWebSocket(currLocation) {
-
-            EasyWebSocket.conn = new ReconnectingWebSocket('ws://' + currLocation);
-
-            EasyWebSocket.conn.onopen = function () {
-                console.info("Connection established!");
-            };
-
-            EasyWebSocket.conn.onerror = function () {
-                console.info("Connection error!");
-            };
-
-            EasyWebSocket.conn.onclose = function () {
-                console.info("Connection close!");
-            };
-
-            EasyWebSocket.conn.onmessage = function (e) {
-                EasyWebSocket.receiveMessage(e);
-            };
-        }
-
-        static receiveMessage(e) {
-            let data = JSON.parse(e.data);
-            let type = data['type'];
-
-            EasyWebSocket.handleMessage(type, data);
-        }
-
-        static handleMessage(type, data) {
-            console.log(':message:',type, data);
+        static receiveMessage(message) {
+            console.log(':43434:', message);
         }
     }
 
-    easyFetch('getServerIp.php', {}).then(function (serverIp) {
-        EasyWebSocket.init(serverIp);
-        EasyWebSocket.queue.sendNow('type1', {'msg': 'message1'});
-    });
+    let clowNetwork = new ClowNetwork();
 
-
-</script>
-
-{#<script>#}
-{#    function NotifServer(){#}
-{#        let notif = new EasyWebSocket("ws://127.0.0.1:9090");#}
-
-{#        notif.onmessage = function (event) {#}
-{#            console.log(event.data);#}
-{#            $('.content').append('<p>'+ event.data +'</p>');#}
-
-{#        }#}
-
-{#        notif.onopen = function() {#}
-{#            $('.content').append('<p> >>> Connected</p>');#}
-{#            let token_user = '{{ token }}';#}
-{#            let authElements = "{\"userData\":\""+token_user+"\"}";#}
-{#            notif.send(authElements);#}
-{#        }#}
-
-{#        notif.onerror = function(error) {#}
-{#            $('.content').append('<p> >>> Error...</p>');#}
-{#            //alert('error');#}
-{#        }#}
-{#    }#}
-
-{#    NotifServer();#}
-{#</script>#}
-
-
-<script>
-    document.addEventListener('start', e => {
-        console.log('Обработка события start на document!');
-    });
 
 </script>
 
