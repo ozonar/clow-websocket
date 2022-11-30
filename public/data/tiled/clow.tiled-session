@@ -1,0 +1,85 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "clow-main.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "Все файлы (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 4,
+            "scaleInEditor": 1
+        },
+        "clow-main.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 733.6666666666667,
+                "y": 136
+            }
+        },
+        "clow-main.tmx#pieces": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "clow-main.tmx#small_pieces": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "clow-main.tmx#wm": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "clow-main.tmx#wm2": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "pieces.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "wm.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 4,
+            "scaleInEditor": 8
+        },
+        "worldmap.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 8
+        }
+    },
+    "last.exportedFilePath": "C:/Users/mail/Tiled",
+    "last.imagePath": "C:/Users/mail/Tiled/pieces",
+    "map.height": 40,
+    "map.lastUsedExportFilter": "JSON map-файлы (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 60,
+    "openFiles": [
+        "clow-main.tmx"
+    ],
+    "project": "clow.tiled-project",
+    "recentFiles": [
+        "clow-main.tmx",
+        "pieces.tsx",
+        "wm.tsx",
+        "worldmap.tsx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.margin": 1,
+    "tileset.spacing": 1,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.transparentColor": "#000000",
+    "tileset.type": 1,
+    "tileset.useTransparentColor": true
+}

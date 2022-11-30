@@ -1,0 +1,4 @@
+swoole_bridge:
+  server:
+    port: "4545"      #The port the socket server will listen on
+    host: "127.0.0.1"
