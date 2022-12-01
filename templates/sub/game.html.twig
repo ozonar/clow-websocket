@@ -88,22 +88,18 @@
 <script>
 
     class ClowNetwork {
-        ews;
 
         constructor() {
 
-            let ews;
             easyFetch('getServerIp.php', {}).then(function (serverIp) {
-                ews = new EasyWebSocket(serverIp, ClowNetwork.receiveMessage);
+                ClowNetwork.ews = new EasyWebSocket(serverIp, ClowNetwork.receiveMessage);
             });
 
-            this.ews = ews;
-
-            document.addEventListener('websocket:ready', this.init);
+            document.addEventListener('websocket:ready', ClowNetwork.init);
         }
 
-        init() {
-            this.ews.queue.sendNow('type1', {'msg': 'message1'});
+        static init() {
+            ClowNetwork.ews.queue.sendNow('type1', {'msg': 'message1'});
         }
 
         static receiveMessage(message) {
