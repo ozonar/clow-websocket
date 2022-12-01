@@ -19,19 +19,18 @@ use Ratchet\WebSocket\WsServer;
 #[AsCommand(name: 'app:server')]
 class Server extends Command
 {
+
+    private RatchetServer $ratchetServer;
+
     protected function configure()
     {
         $this->setDescription('Game server')
             ->addOption('runner', 'r', InputOption::VALUE_NONE, '', null);
     }
 
-    private $container;
-    private $ratchetServer;
-
     public function __construct(ContainerInterface $container, RatchetServer $ratchetServer)
     {
         parent::__construct();
-        $this->container = $container;
         $this->ratchetServer = $ratchetServer;
     }
 
